@@ -12,7 +12,6 @@ import robert.persistence.entities.User;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -33,13 +32,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		private final User user;
 
-		private final Set<GrantedAuthority> authorities;
+		private final Collection<GrantedAuthority> authorities;
 
 		private UserDetailsImpl(User user) {
 			this.user = user;
 			if (user.isAdmin()) {
 				this.authorities = new HashSet<>(1);
-				this.authorities.add(new SimpleGrantedAuthority("ADMIN"));
+				this.authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 			} else {
 				this.authorities = Collections.emptySet();
 			}
