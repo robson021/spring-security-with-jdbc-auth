@@ -14,7 +14,7 @@ public class AdminController {
 		return "hello admin " + SecurityUtils.getUsername();
 	}
 
-	@GetMapping("test")
+	@GetMapping("/test")
 	public String test() {
 		return "test private resource for " + SecurityUtils.getUsername();
 	}
