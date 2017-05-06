@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import robert.persistence.UserRepository;
 import robert.persistence.entities.User;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -33,15 +33,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		private final User user;
 
-		private final List<GrantedAuthority> authorities;
+		private final Set<GrantedAuthority> authorities;
 
 		private UserDetailsImpl(User user) {
 			this.user = user;
 			if (user.isAdmin()) {
-				this.authorities = new ArrayList<>(1);
+				this.authorities = new HashSet<>(1);
 				this.authorities.add(new SimpleGrantedAuthority("ADMIN"));
 			} else {
-				this.authorities = Collections.emptyList();
+				this.authorities = Collections.emptySet();
 			}
 		}
 
